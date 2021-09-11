@@ -1,0 +1,65 @@
+add_shader_target(debug_v debug_v.vert)
+
+add_shader_target(benchmark_xfb_v_const benchmark_xfb_v_const.vert)
+add_shader_target(benchmark_xfb_v_texture benchmark_xfb_v_texture.vert)
+add_shader_target(benchmark_xfb_v_glsl benchmark_xfb_v_glsl.vert)
+add_shader_target(benchmark_xfb_v_glsl_cache benchmark_xfb_v_glsl_cache.vert)
+add_shader_target(benchmark_xfb_v_ssbo benchmark_xfb_v_ssbo.vert)
+
+add_shader_target(benchmark_xfb_v_passthrough benchmark_xfb_v_passthrough.vert)
+
+add_shader_target(benchmark_xfb_g_const benchmark_xfb_g_const.geom)
+add_shader_target(benchmark_xfb_g_texture benchmark_xfb_g_texture.geom)
+add_shader_target(benchmark_xfb_g_glsl benchmark_xfb_g_glsl.geom)
+add_shader_target(benchmark_xfb_g_glsl_cache benchmark_xfb_g_glsl_cache.geom)
+add_shader_target(benchmark_xfb_g_ssbo benchmark_xfb_g_ssbo.geom)
+
+add_shader_target(dummy_f dummy_f.frag)
+add_shader_target(debug_f debug_f.frag)
+
+add_library(debug INTERFACE)
+add_dependencies(debug debug_v debug_f)
+
+add_library(benchmark_xfb_vert_const INTERFACE)
+add_dependencies(benchmark_xfb_vert_const benchmark_xfb_v_const dummy_f)
+
+add_library(benchmark_xfb_vert_texture INTERFACE)
+add_dependencies(benchmark_xfb_vert_texture benchmark_xfb_v_texture dummy_f)
+
+add_library(benchmark_xfb_vert_glsl INTERFACE)
+add_dependencies(benchmark_xfb_vert_glsl benchmark_xfb_v_glsl dummy_f)
+
+add_library(benchmark_xfb_vert_glsl_cache INTERFACE)
+add_dependencies(benchmark_xfb_vert_glsl_cache benchmark_xfb_v_glsl_cache dummy_f)
+
+add_library(benchmark_xfb_vert_ssbo INTERFACE)
+add_dependencies(benchmark_xfb_vert_ssbo benchmark_xfb_v_ssbo dummy_f)
+
+add_library(benchmark_xfb_geom_const INTERFACE)
+add_dependencies(benchmark_xfb_geom_const benchmark_xfb_v_passthrough benchmark_xfb_g_const dummy_f)
+
+add_library(benchmark_xfb_geom_texture INTERFACE)
+add_dependencies(benchmark_xfb_geom_texture benchmark_xfb_v_passthrough benchmark_xfb_g_texture dummy_f)
+
+add_library(benchmark_xfb_geom_glsl INTERFACE)
+add_dependencies(benchmark_xfb_geom_glsl benchmark_xfb_v_passthrough benchmark_xfb_g_glsl dummy_f)
+
+add_library(benchmark_xfb_geom_glsl_cache INTERFACE)
+add_dependencies(benchmark_xfb_geom_glsl_cache benchmark_xfb_v_passthrough benchmark_xfb_g_glsl_cache dummy_f)
+
+add_library(benchmark_xfb_geom_ssbo INTERFACE)
+add_dependencies(benchmark_xfb_geom_ssbo benchmark_xfb_v_passthrough benchmark_xfb_g_ssbo dummy_f)
+
+add_library(benchmark::program::debug ALIAS debug)
+
+add_library(benchmark::program::benchmark_xfb_vert_const ALIAS benchmark_xfb_vert_const)
+add_library(benchmark::program::benchmark_xfb_vert_texture ALIAS benchmark_xfb_vert_texture)
+add_library(benchmark::program::benchmark_xfb_vert_glsl ALIAS benchmark_xfb_vert_glsl)
+add_library(benchmark::program::benchmark_xfb_vert_glsl_cache ALIAS benchmark_xfb_vert_glsl_cache)
+add_library(benchmark::program::benchmark_xfb_vert_ssbo ALIAS benchmark_xfb_vert_ssbo)
+
+add_library(benchmark::program::benchmark_xfb_geom_const ALIAS benchmark_xfb_geom_const)
+add_library(benchmark::program::benchmark_xfb_geom_texture ALIAS benchmark_xfb_geom_texture)
+add_library(benchmark::program::benchmark_xfb_geom_glsl ALIAS benchmark_xfb_geom_glsl)
+add_library(benchmark::program::benchmark_xfb_geom_glsl_cache ALIAS benchmark_xfb_geom_glsl_cache)
+add_library(benchmark::program::benchmark_xfb_geom_ssbo ALIAS benchmark_xfb_geom_ssbo)
