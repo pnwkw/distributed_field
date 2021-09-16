@@ -1,0 +1,5 @@
+{
+  "samples": 1000,
+  "method": "benchmark_onehot_xfb_glsl",
+  "mode": 2
+}

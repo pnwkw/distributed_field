@@ -63,6 +63,7 @@ add_subdirectory(shaders)
 
 # data files
 file(COPY data DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
+file(COPY config.json DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 
 # ROOT stuff
 if(DEFINED USE_ROOT)
